@@ -1,11 +1,16 @@
-module.exports = {
-    presets: ['babel-preset-expo'], // or 'module:metro-react-native-babel-preset' for non-Expo
+module.exports = function(api) {
+  api.cache(true);
+  return {
+    presets: ['babel-preset-expo'], // or 'module:metro-react-native-babel-preset'
     plugins: [
-      ['module:react-native-dotenv', {
-        moduleName: '@env',
-        path: '.env.local',           // <-- use your actual file name here
-        allowUndefined: false
-      }]
-    ]
+      [
+        'module:react-native-dotenv',
+        {
+          moduleName: '@env',
+          path: '.env.local',
+          allowUndefined: false,
+        },
+      ],
+    ],
   };
-  
+};
