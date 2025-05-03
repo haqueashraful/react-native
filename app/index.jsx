@@ -36,6 +36,9 @@ const Home = () => {
       <Link style={styles.link} href="/register">
         <ThemedText>Register</ThemedText>
       </Link>
+      <Link style={styles.link} href="/profile">
+        <ThemedText>Profile</ThemedText>
+      </Link>
     </ThemedView>
   );
 };
@@ -79,7 +82,7 @@ const styles = StyleSheet.create({
   },
   link: {
     fontSize: 20,
-    marginVertical: 5,
+    marginVertical: 15,
     borderBottomWidth: 1,
     borderBottomColor: "white",
   },

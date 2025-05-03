@@ -1,11 +1,15 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Keyboard, StyleSheet, Text, TouchableWithoutFeedback } from "react-native";
 import ThemedView from "../../components/ThemedView";
 import ThemedText from "../../components/ThemedText";
 import Spacer from "../../components/Spacer";
 import { Link } from "expo-router";
 import ThemedButton from "../../components/ThemedButton";
+import ThemedTextInput from "../../components/ThemedTextInput";
+import { useState } from "react";
 
 const Register = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
     const handleSubmit = () => {
         console.log("pressed");
@@ -13,9 +17,28 @@ const Register = () => {
 
 
   return (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
     <ThemedView style={styles.container}>
       <Spacer />
       <ThemedText title style={styles.title}>Register for an account</ThemedText>
+
+
+
+      <ThemedTextInput
+        style={{ width: "80%", marginBottom: 20 }}
+        placeholder={"Email"}
+        keyboardType="email-address"
+        onChangeText={setEmail}
+        value={email}
+      />
+      
+      <ThemedTextInput
+        style={{ width: "80%", marginBottom: 20 }}
+        placeholder={"Password"}
+        onChangeText={setPassword}
+        value={password}
+        secureTextEntry
+      />
 
 
       <ThemedButton onPress={handleSubmit}>
@@ -29,6 +52,7 @@ const Register = () => {
         <ThemedText style={{ textAlign: "center" }}>Login</ThemedText>
       </Link>
     </ThemedView>
+    </TouchableWithoutFeedback>
   );
 };
 

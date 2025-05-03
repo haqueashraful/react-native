@@ -3,14 +3,14 @@ import React from 'react'
 import { Stack } from 'expo-router'
 import { Colors } from "../constants/Colors";
 import { StatusBar } from 'expo-status-bar';
+import { UserProvider } from '../contexts/UserContext';
 
 const RootLayout = () => {
     const colorScheme = useColorScheme();
-    console.log(colorScheme);
     const theme = Colors[colorScheme] ?? Colors.light;
 
   return (
-    <>
+    <UserProvider>
     <StatusBar style="auto" />
         <Stack screenOptions={{
             headerStyle: {
@@ -22,10 +22,13 @@ const RootLayout = () => {
             <Stack.Screen name="(dashboard)" options={{headerShown: false}}/>
             <Stack.Screen name="index" options={{title: "Home"}}/>
         </Stack>
-    </>
+    </UserProvider>
   )
 }
 
 export default RootLayout
 
 const styles = StyleSheet.create({})
+
+
+
