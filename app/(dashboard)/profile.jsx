@@ -3,22 +3,31 @@ import React from "react";
 import ThemedView from "../../components/ThemedView";
 import Spacer from "../../components/Spacer";
 import ThemedText from "../../components/ThemedText";
+import { useUser } from "../../hooks/useUser";
+import ThemedButton from "../../components/ThemedButton";
  
-const Books = () => {
+const Profile = () => {
+  const { logout, user } = useUser();
+
   return (
     <ThemedView safe style={styles.container}>
       <ThemedText title style={styles.heading}>
-        Your Email
+        Welcome {user?.email}
       </ThemedText>
       <Spacer />
       <ThemedText>
         Time to start reading some books....
       </ThemedText>
+
+      <Spacer />
+      <ThemedButton onPress={logout}>
+        <Text style={{ color: "f2f2f2" }}>Logout</Text>
+      </ThemedButton>
     </ThemedView>
   );
 };
 
-export default Books;
+export default Profile;
 
 const styles = StyleSheet.create({
   container: {
