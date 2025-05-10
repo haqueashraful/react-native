@@ -12,7 +12,6 @@ import ThemedButton from "../../components/ThemedButton";
 import ThemedTextInput from "../../components/ThemedTextInput";
 import { useState } from "react";
 import { useUser } from "../../hooks/useUser";
-import { TextInput } from "react-native-web";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -29,7 +28,7 @@ const Register = () => {
   };
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+    <TouchableWithoutFeedback>
       <ThemedView style={styles.container}>
         <Spacer />
         <ThemedText title style={styles.title}>
@@ -43,7 +42,6 @@ const Register = () => {
           onChangeText={setEmail}
           value={email}
         />
-
 
         <ThemedTextInput
           style={{ width: "80%", marginBottom: 20 }}

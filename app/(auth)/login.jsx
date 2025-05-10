@@ -12,14 +12,15 @@ import { useUser } from "../../hooks/useUser";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [error, setError] = useState(null);
   const { login } = useUser();
 
   const handleSubmit = async () => {
+    setError(null);
     try {
     await login(email, password);
     } catch (error) {
-      console.log(error.message);
+      setError(error.message);
     }
   };
 
@@ -45,6 +46,8 @@ const Login = () => {
         value={password}
         secureTextEntry
       />
+
+      {error && <Text style={{ color: "red" }}>{error}</Text>}
 
       <ThemedButton onPress={handleSubmit}>
         <Text style={{ color: "#f2f2f2" }}>Login</Text>
