@@ -1,20 +1,19 @@
 import { StyleSheet, Alert, TouchableOpacity } from "react-native";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import ThemedView from "../../components/ThemedView";
 import ThemedText from "../../components/ThemedText";
 import Spacer from "../../components/Spacer";
 import ThemedTextInput from "../../components/ThemedTextInput";
-import { BookContext } from "../../contexts/BooksContext";
 import { useUser } from "../../hooks/useUser";
 import { Colors } from "../../constants/Colors";
+import { useBooks } from "../../hooks/useBooks";
 
 const Create = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const { createBook } = useContext(BookContext);
-  const { user } = useUser(); // Get logged-in user info
+  const { createBook } = useBooks();
+  const { user } = useUser(); 
 
-  // Error state
   const [error, setError] = useState(null);
 
   const handleSubmit = async () => {
@@ -63,7 +62,6 @@ const Create = () => {
         style={[styles.input, { height: 100 }]}
       />
       <Spacer />
-      {/* Display error message */}
       {error && <ThemedText style={styles.error}>{error}</ThemedText>}
 
       <TouchableOpacity style={styles.button} onPress={handleSubmit}>
