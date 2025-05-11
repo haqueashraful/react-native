@@ -5,14 +5,16 @@ import Spacer from "../../components/Spacer";
 import ThemedText from "../../components/ThemedText";
 import { Colors } from "../../constants/Colors";
 import { useBooks } from "../../hooks/useBooks";
+import { useUser } from "../../hooks/useUser";
 
 const Books = () => {
-  const { books } = useBooks();
+  const { getBooksByUser } = useBooks();
+  const { user } = useUser();
   const [bookList, setBookList] = useState([]);
 
   useEffect(() => {
-    setBookList(books);
-  }, [books]);
+    getBooksByUser({ user }).then(setBookList);
+  }, [user]);
 
   const renderItem = ({ item }) => (
     <View style={styles.bookItem}>
@@ -26,7 +28,7 @@ const Books = () => {
     <ThemedView safe style={styles.container}>
       <Spacer />
       <ThemedText title style={styles.heading}>
-        Your Reading List
+        Your Books List
       </ThemedText>
 
       <FlatList
